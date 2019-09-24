@@ -1,12 +1,6 @@
-import * as Protected from './protected';
-import * as Public from './public';
-const {
-  GraphQLDate,
-  GraphQLDateTime
-} = require('graphql-iso-date');
+const { GraphQLDate, GraphQLDateTime } = require("graphql-iso-date");
 
-const schema = [...Protected.schema,
-  ...Public.schema,
+const schema = [
   `
   scalar DateTime
   scalar Date
@@ -31,29 +25,23 @@ const schema = [...Protected.schema,
 `
 ];
 
-const getViewer = (cxt) => {
+const getViewer = cxt => {
   const username = cxt.request.user ? cxt.request.user.username : null;
   return {
     id: username,
     username
   };
-}
+};
 
 const resolvers = {
   Date: GraphQLDate,
   DateTime: GraphQLDateTime,
-  ...Public.resolvers,
-  ...Protected.resolvers,
   Query: {
     viewer: (parent, args, cxt) => getViewer(cxt)
   },
   Mutation: {
-    viewer: (parent, args, cxt) => getViewer(cxt),
+    viewer: (parent, args, cxt) => getViewer(cxt)
   }
 };
 
-
-export {
-  schema,
-  resolvers
-}
+export { schema, resolvers };
