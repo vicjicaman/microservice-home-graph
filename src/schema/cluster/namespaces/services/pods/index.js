@@ -6,6 +6,7 @@ const schema = [
   type Pod {
     id: ID
     name: String!
+    status: String!
   }
   `,
   ...Queries.schema,

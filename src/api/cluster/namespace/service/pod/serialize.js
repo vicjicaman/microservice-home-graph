@@ -1,20 +1,20 @@
 const Complete = {
-  serialize: ({ id, name, type, selector }) => ({
+  serialize: ({ id, name, labels, status }) => ({
     id,
     name,
-    type,
-    selector
+    labels,
+    status
   }),
   deserialize: obj => obj
 };
 
 const List = {
-  serialize: ({ id, name, type, selector }) =>
+  serialize: ({ id, name, labels, status }) =>
     JSON.stringify({
       id,
       name,
-      type,
-      selector
+      labels,
+      status
     }),
   deserialize: ostr => {
     return JSON.parse(ostr);

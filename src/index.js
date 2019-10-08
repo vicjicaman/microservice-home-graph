@@ -65,7 +65,7 @@ const RESOURCES_CACHE_SECRET_PASSWORD =
     }))
   );
   app.listen(HOME_INTERNAL_PORT_GRAPH, () =>
-    console.log("Home GraphQL running...")
+    console.log("Home GraphQL running....")
   );
 })().catch(e => console.log(e.toString()));
 

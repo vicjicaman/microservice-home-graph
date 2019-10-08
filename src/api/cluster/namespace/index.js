@@ -7,21 +7,12 @@ const construct = (obj, cluster) => {
   return { id: cluster.id + "_" + name, name, cluster, raw: obj };
 };
 
-export const get = async (cluster, name, cxt) => {
-  const res = await GraphCommon.Cache.object(
-    Cache.Keys.name(cluster.id, name),
-    {
-      getter: async (params, cxt) => {
-        const {
-          metadata: { name }
-        } = await cluster.request(`/namespaces/${name}`);
+export const get = async (cluster, namespaceName, cxt) => {
+  const {
+    metadata: { name }
+  } = await cluster.request(`/namespaces/${namespaceName}`);
 
-        return { name };
-      },
-      serializer: Cache.Serializers.Complete
-    },
-    cxt
-  );
+  const res = { name };
 
   return construct(res, cluster);
 };

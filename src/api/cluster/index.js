@@ -1,28 +1,58 @@
 import axios from "axios";
-var https = require("https");
-var fs = require("fs");
+const https = require("https");
+const fs = require("fs");
+
+import * as GraphCommon from "@nebulario/microservice-graph-common";
 
 export const get = async (viewer, id, cxt) => {
   const token = fs.readFileSync(
     "/var/run/secrets/kubernetes.io/serviceaccount/token"
   );
+  const ca = fs.readFileSync(
+    "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+  );
 
   const httpsAgent = new https.Agent({
     keepAlive: true,
-    ca: fs.readFileSync("/var/run/secrets/kubernetes.io/serviceaccount/ca.crt")
+    ca
   });
 
   const request = async url => {
-    const res = await axios({
-      method: "get",
-      url: "https://kubernetes.default.svc.cluster.local/api/v1" + url,
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      httpsAgent
-    });
-    const { data } = res;
-    return data;
+    try {
+      const { result, error } = await GraphCommon.Cache.operation(
+        "request:cluster:api",
+        url,
+        async () => {
+          const res = await axios({
+            method: "get",
+            url: "https://kubernetes.default.svc.cluster.local/api/v1" + url,
+            headers: {
+              Authorization: `Bearer ${token}`,
+              Accept: "application/json"
+            },
+            httpsAgent
+          });
+
+          const { data } = res;
+          return JSON.stringify(data);
+        },
+        { expire: 60 },
+        cxt
+      );
+
+      if (error) {
+        console.log(url);
+        console.log(error);
+        throw new Error(error);
+      }
+
+      const resultData = JSON.parse(result);
+      return resultData;
+    } catch (e) {
+      console.log(url);
+      console.log(e.toString());
+      throw e;
+    }
   };
 
   return { id, request, viewer };
