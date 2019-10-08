@@ -1,6 +1,5 @@
 src
 static
-service
 webpack.*
 .babelrc
 .env
