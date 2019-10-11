@@ -11,6 +11,7 @@
     "@babel/runtime-corejs3": "^7.6.0",
     "@nebulario/microservice-auth-common": "1.70.1-master",
     "@nebulario/microservice-graph-common": "link:./../microservice-graph-common",
+    "@nebulario/microservice-logger": "link:./../microservice-logger",
     "@nebulario/microservice-utils": "1.70.0-master",
     "axios": "^0.19.0",
     "dotenv": "^7.0.0",
