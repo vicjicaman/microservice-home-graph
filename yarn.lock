@@ -686,17 +686,9 @@
     redis "^2.8.0"
     redis-parser "^3.0.0"
 
-"@nebulario/microservice-graph-common@1.70.0-home-intro-prod":
-  version "1.70.0-home-intro-prod"
-  resolved "https://registry.yarnpkg.com/@nebulario/microservice-graph-common/-/microservice-graph-common-1.70.0-home-intro-prod.tgz#10ead6acd8ca608626787602b6872b99d71c46df"
-  integrity sha512-jzxP2dqt0quTSL/4e0mkJ9cyOZHiyStVUr3kSuzP8UaIlbb0J5COax0mOKh3Y7p5fr8PM2C11PQilzpUDa80UQ==
-  dependencies:
-    "@babel/runtime" "^7.6.0"
-    "@babel/runtime-corejs3" "^7.6.0"
-    "@nebulario/microservice-utils" "1.70.0-master"
-    amqplib "^0.5.5"
-    async-redis "^1.1.7"
-    uuid "^3.3.3"
+"@nebulario/microservice-graph-common@link:../microservice-graph-common":
+  version "0.0.0"
+  uid ""
 
 "@nebulario/microservice-utils@1.70.0-master":
   version "1.70.0-master"

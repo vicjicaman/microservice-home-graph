@@ -19,10 +19,7 @@ const construct = (obj, service) => {
 
 export const list = async (service, args, cxt) => {
   const { namespace, cluster } = service;
-
-  const { items } = await cluster.request(
-    `/namespaces/${namespace.name}/pods`
-  );
+  const { items } = await cluster.request(`/namespaces/${namespace.name}/pods`);
 
   const res = items.map(
     ({ metadata: { name, labels }, status: { phase } }) => ({

@@ -19,8 +19,13 @@ export const get = async (viewer, id, cxt) => {
 
   const request = async url => {
     try {
+      const type = "request:cluster:api";
+      const key = url;
+
+      const rem = "Operations/" + type + "/" + key;
+
       const { result, error } = await GraphCommon.Cache.operation(
-        "request:cluster:api",
+        type,
         url,
         async () => {
           const res = await axios({
