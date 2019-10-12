@@ -24,7 +24,7 @@ const RESOURCES_CACHE_SECRET_PASSWORD =
   process.env["RESOURCES_CACHE_SECRET_PASSWORD"];
 
 (async () => {
-  const logger = Logger.create({path:"/var/log/app"});
+  const logger = Logger.create({ path: "/var/log/app" });
 
   const cache = await GraphCommon.Cache.connect({
     host: RESOURCES_CACHE_INTERNAL_HOST,
@@ -35,7 +35,8 @@ const RESOURCES_CACHE_SECRET_PASSWORD =
   const cxt = {
     services: {
       cache
-    }
+    },
+    logger
   };
 
   var app = express();
@@ -50,6 +51,8 @@ const RESOURCES_CACHE_SECRET_PASSWORD =
       url: ACCOUNT_INTERNAL_URL_GRAPH
     }
   });
+
+  Logger.Service.use(app, cxt);
 
   const schema = makeExecutableSchema({
     typeDefs: rootSchema,
@@ -67,9 +70,11 @@ const RESOURCES_CACHE_SECRET_PASSWORD =
       }
     }))
   );
-  app.listen(HOME_INTERNAL_PORT_GRAPH, () =>
-    console.log("Home GraphQL running...")
-  );
+  app.listen(HOME_INTERNAL_PORT_GRAPH, () => {
+    const msg = "Home GraphQL running...";
+    logger.info(msg);
+    console.log(msg);
+  });
 })().catch(e => console.log(e.toString()));
 
 Utils.Process.shutdown(signal => console.log("shutdown " + signal));
