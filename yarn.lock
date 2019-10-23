@@ -686,13 +686,29 @@
     redis "^2.8.0"
     redis-parser "^3.0.0"
 
-"@nebulario/microservice-graph-common@link:../microservice-graph-common":
-  version "0.0.0"
-  uid ""
+"@nebulario/microservice-graph-common@1.70.2-home-intro-prod":
+  version "1.70.2-home-intro-prod"
+  resolved "https://registry.yarnpkg.com/@nebulario/microservice-graph-common/-/microservice-graph-common-1.70.2-home-intro-prod.tgz#348b18b5b3c0e93a70da8b8195a1af85b4ad8e4b"
+  integrity sha512-BLI6fKP9r4+PUz85bs3jg0DdpptBQGy9PKNE723RnYFhm43FYAKelsmeTCxlZSbfR4s7jt2ioxAOjE2NcQYAlQ==
+  dependencies:
+    "@babel/runtime" "^7.6.0"
+    "@babel/runtime-corejs3" "^7.6.0"
+    "@nebulario/microservice-utils" "1.70.0-master"
+    amqplib "^0.5.5"
+    async-redis "^1.1.7"
+    uuid "^3.3.3"
 
-"@nebulario/microservice-logger@link:../microservice-logger":
-  version "0.0.0"
-  uid ""
+"@nebulario/microservice-logger@1.70.1-home-intro-prod":
+  version "1.70.1-home-intro-prod"
+  resolved "https://registry.yarnpkg.com/@nebulario/microservice-logger/-/microservice-logger-1.70.1-home-intro-prod.tgz#4f5995213a8c9d51827994eab21ef0747b047c97"
+  integrity sha512-orCrTa+9avOdOsaqI9YsniZjwOKvsYKRN+vRJvJRbx0cSPfOdoyHDK8tmjPFpaemIEJ0iqIEj/R0Kev7SpIL/Q==
+  dependencies:
+    "@babel/runtime" "^7.6.0"
+    "@babel/runtime-corejs3" "^7.6.0"
+    express-request-id "^1.4.1"
+    morgan "^1.9.1"
+    winston "^3.2.0"
+    winston-daily-rotate-file "^4.2.1"
 
 "@nebulario/microservice-utils@1.70.0-master":
   version "1.70.0-master"
@@ -1111,6 +1127,13 @@ base@^0.11.1:
     isobject "^3.0.1"
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
+
+basic-auth@~2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.1.tgz#b998279bf47ce38344b4f3cf916d4679bbf51e3a"
+  integrity sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==
+  dependencies:
+    safe-buffer "5.1.2"
 
 big.js@^5.2.2:
   version "5.2.2"
@@ -2105,6 +2128,13 @@ express-graphql@^0.7.1:
     content-type "^1.0.4"
     http-errors "^1.7.1"
     raw-body "^2.3.3"
+
+express-request-id@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/express-request-id/-/express-request-id-1.4.1.tgz#66feaf1f0be3deca13f3abfe1c098e49b12f2c28"
+  integrity sha512-qpxK6XhDYtdx9FvxwCHkUeZVWtkGbWR87hBAzGECfwYF/QQCPXEwwB2/9NGkOR1tT7/aLs9mma3CT0vjSzuZVw==
+  dependencies:
+    uuid "^3.3.2"
 
 express-session@^1.16.2:
   version "1.16.2"
@@ -3354,6 +3384,17 @@ mongoose@^5.6.12:
     sift "7.0.1"
     sliced "1.0.1"
 
+morgan@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.1.tgz#0a8d16734a1d9afbc824b99df87e738e58e2da59"
+  integrity sha512-HQStPIV4y3afTiCYVxirakhlCfGkI161c76kKFca7Fk1JusM//Qeo1ej2XaMniiNeaZklMVrh3vTtIzpzwbpmA==
+  dependencies:
+    basic-auth "~2.0.0"
+    debug "2.6.9"
+    depd "~1.1.2"
+    on-finished "~2.3.0"
+    on-headers "~1.0.1"
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -3633,7 +3674,7 @@ on-finished@~2.3.0:
   dependencies:
     ee-first "1.1.1"
 
-on-headers@~1.0.2:
+on-headers@~1.0.1, on-headers@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/on-headers/-/on-headers-1.0.2.tgz#772b0ae6aaa525c399e489adfad90c403eb3c28f"
   integrity sha512-pZAE+FJLoyITytdqK0U5s+FIpjN0JP3OzFi/u8Rx+EV5/W+JTWGXG8xFzevE7AjBfDqHv/8vL8qQsIhHnqRkrA==
@@ -5023,7 +5064,7 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@^3.1.0, uuid@^3.3.3:
+uuid@^3.1.0, uuid@^3.3.2, uuid@^3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
