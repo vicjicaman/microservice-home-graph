@@ -686,10 +686,10 @@
     redis "^2.8.0"
     redis-parser "^3.0.0"
 
-"@nebulario/microservice-graph-common@1.70.2-home-intro-prod":
-  version "1.70.2-home-intro-prod"
-  resolved "https://registry.yarnpkg.com/@nebulario/microservice-graph-common/-/microservice-graph-common-1.70.2-home-intro-prod.tgz#348b18b5b3c0e93a70da8b8195a1af85b4ad8e4b"
-  integrity sha512-BLI6fKP9r4+PUz85bs3jg0DdpptBQGy9PKNE723RnYFhm43FYAKelsmeTCxlZSbfR4s7jt2ioxAOjE2NcQYAlQ==
+"@nebulario/microservice-graph-common@1.70.2-master":
+  version "1.70.2-master"
+  resolved "https://registry.yarnpkg.com/@nebulario/microservice-graph-common/-/microservice-graph-common-1.70.2-master.tgz#02dba482046303c28496c071f14c034a20c9d7b1"
+  integrity sha512-xFsn8czX7yATTghNzPZ9Ri0XlGjtHMJYzdvwy7Gi7+4qJCopFY8qrC7L7kKxR4DPJY0nmF5N21EGlKvPoblBTg==
   dependencies:
     "@babel/runtime" "^7.6.0"
     "@babel/runtime-corejs3" "^7.6.0"
@@ -698,10 +698,10 @@
     async-redis "^1.1.7"
     uuid "^3.3.3"
 
-"@nebulario/microservice-logger@1.70.1-home-intro-prod":
-  version "1.70.1-home-intro-prod"
-  resolved "https://registry.yarnpkg.com/@nebulario/microservice-logger/-/microservice-logger-1.70.1-home-intro-prod.tgz#4f5995213a8c9d51827994eab21ef0747b047c97"
-  integrity sha512-orCrTa+9avOdOsaqI9YsniZjwOKvsYKRN+vRJvJRbx0cSPfOdoyHDK8tmjPFpaemIEJ0iqIEj/R0Kev7SpIL/Q==
+"@nebulario/microservice-logger@1.70.0-master":
+  version "1.70.0-master"
+  resolved "https://registry.yarnpkg.com/@nebulario/microservice-logger/-/microservice-logger-1.70.0-master.tgz#559ead19b4c7226fd93a760fbe61318b2fb5ff8c"
+  integrity sha512-C/etoY63MEUh45A37QgTxxDSoetYKSHDiGMAYnPyPQ9RDJuXhubXfSsKSv6ujZXrI+4QyNjeW829bkxffBk5yQ==
   dependencies:
     "@babel/runtime" "^7.6.0"
     "@babel/runtime-corejs3" "^7.6.0"
