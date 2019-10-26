@@ -686,29 +686,13 @@
     redis "^2.8.0"
     redis-parser "^3.0.0"
 
-"@nebulario/microservice-graph-common@1.70.2-home-intro-prod":
-  version "1.70.2-home-intro-prod"
-  resolved "https://registry.yarnpkg.com/@nebulario/microservice-graph-common/-/microservice-graph-common-1.70.2-home-intro-prod.tgz#348b18b5b3c0e93a70da8b8195a1af85b4ad8e4b"
-  integrity sha512-BLI6fKP9r4+PUz85bs3jg0DdpptBQGy9PKNE723RnYFhm43FYAKelsmeTCxlZSbfR4s7jt2ioxAOjE2NcQYAlQ==
-  dependencies:
-    "@babel/runtime" "^7.6.0"
-    "@babel/runtime-corejs3" "^7.6.0"
-    "@nebulario/microservice-utils" "1.70.0-master"
-    amqplib "^0.5.5"
-    async-redis "^1.1.7"
-    uuid "^3.3.3"
+"@nebulario/microservice-graph-common@link:../microservice-graph-common":
+  version "0.0.0"
+  uid ""
 
-"@nebulario/microservice-logger@1.70.1-home-intro-prod":
-  version "1.70.1-home-intro-prod"
-  resolved "https://registry.yarnpkg.com/@nebulario/microservice-logger/-/microservice-logger-1.70.1-home-intro-prod.tgz#4f5995213a8c9d51827994eab21ef0747b047c97"
-  integrity sha512-orCrTa+9avOdOsaqI9YsniZjwOKvsYKRN+vRJvJRbx0cSPfOdoyHDK8tmjPFpaemIEJ0iqIEj/R0Kev7SpIL/Q==
-  dependencies:
-    "@babel/runtime" "^7.6.0"
-    "@babel/runtime-corejs3" "^7.6.0"
-    express-request-id "^1.4.1"
-    morgan "^1.9.1"
-    winston "^3.2.0"
-    winston-daily-rotate-file "^4.2.1"
+"@nebulario/microservice-logger@link:../microservice-logger":
+  version "0.0.0"
+  uid ""
 
 "@nebulario/microservice-utils@1.70.0-master":
   version "1.70.0-master"
