@@ -18,6 +18,8 @@ export const get = async (viewer, id, cxt) => {
   });
 
   const request = async url => {
+    cxt.logger.debug("api.request.get", { url });
+
     try {
       const type = "request:cluster:api";
       const key = url;
@@ -46,16 +48,14 @@ export const get = async (viewer, id, cxt) => {
       );
 
       if (error) {
-        console.log(url);
-        console.log(error);
+        cxt.logger.error("api.request.error", { url, error });
         throw new Error(error);
       }
 
       const resultData = JSON.parse(result);
       return resultData;
     } catch (e) {
-      console.log(url);
-      console.log(e.toString());
+      cxt.logger.error("api.request.error", { url, error: e.toString() });
       throw e;
     }
   };
