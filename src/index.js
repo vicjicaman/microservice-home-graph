@@ -9,6 +9,7 @@ import * as Utils from "@nebulario/microservice-utils";
 import * as GraphCommon from "@nebulario/microservice-graph-common";
 import * as Logger from "@nebulario/microservice-logger";
 
+const ENV_MODE = process.env["ENV_MODE"];
 const ACCOUNT_INTERNAL_URL_GRAPH = process.env["ACCOUNT_INTERNAL_URL_GRAPH"];
 const AUTH_CACHE_INTERNAL_HOST = process.env["AUTH_CACHE_INTERNAL_HOST"];
 const AUTH_CACHE_INTERNAL_PORT = process.env["AUTH_CACHE_INTERNAL_PORT"];
@@ -23,23 +24,23 @@ const RESOURCES_CACHE_INTERNAL_PORT =
 const RESOURCES_CACHE_SECRET_PASSWORD =
   process.env["RESOURCES_CACHE_SECRET_PASSWORD"];
 
-(async () => {
-  const logger = Logger.create({ path: "/var/log/app" });
+const logger = Logger.create({ path: "/var/log/app", env: ENV_MODE });
 
-  const cache = await GraphCommon.Cache.connect({
+const cxt = {
+  services: {},
+  logger
+};
+
+(async () => {
+  cxt.services.cache = await GraphCommon.Cache.connect({
     host: RESOURCES_CACHE_INTERNAL_HOST,
     port: RESOURCES_CACHE_INTERNAL_PORT,
     password: RESOURCES_CACHE_SECRET_PASSWORD
   });
 
-  const cxt = {
-    services: {
-      cache
-    },
-    logger
-  };
-
   var app = express();
+  Logger.Service.use(app, cxt);
+
   AuthLib.init({
     app,
     cache: {
@@ -51,8 +52,6 @@ const RESOURCES_CACHE_SECRET_PASSWORD =
       url: ACCOUNT_INTERNAL_URL_GRAPH
     }
   });
-
-  Logger.Service.use(app, cxt);
 
   const schema = makeExecutableSchema({
     typeDefs: rootSchema,
@@ -71,10 +70,10 @@ const RESOURCES_CACHE_SECRET_PASSWORD =
     }))
   );
   app.listen(HOME_INTERNAL_PORT_GRAPH, () => {
-    const msg = "Home GraphQL running...";
-    logger.info(msg);
-    console.log(msg);
+    cxt.logger.info("service.running", { port: HOME_INTERNAL_PORT_GRAPH });
   });
-})().catch(e => console.log(e.toString()));
+})().catch(e => cxt.logger.error("service.error", { error: e.toString() }));
 
-Utils.Process.shutdown(signal => console.log("shutdown " + signal));
+Utils.Process.shutdown(signal =>
+  cxt.logger.info("service.shutdown", { signal })
+);

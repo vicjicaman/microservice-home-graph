@@ -1,6 +1,6 @@
 {
   "name": "@nebulario/microservice-home-graph",
-  "version": "1.70.3-master",
+  "version": "1.70.5-master",
   "description": "GraphQL api for auth",
   "main": "dist/index.js",
   "repository": "github.com:vicjicaman/microservice-auth-graph.git",
@@ -10,8 +10,8 @@
     "@babel/runtime": "^7.6.0",
     "@babel/runtime-corejs3": "^7.6.0",
     "@nebulario/microservice-auth-common": "1.70.1-master",
-    "@nebulario/microservice-graph-common": "1.70.2-master",
-    "@nebulario/microservice-logger": "1.70.0-master",
+    "@nebulario/microservice-graph-common": "1.70.3-master",
+    "@nebulario/microservice-logger": "1.70.1-master",
     "@nebulario/microservice-utils": "1.70.0-master",
     "axios": "^0.19.0",
     "dotenv": "^7.0.0",
