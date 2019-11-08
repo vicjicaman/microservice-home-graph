@@ -70,10 +70,10 @@ const cxt = {
     }))
   );
   app.listen(HOME_INTERNAL_PORT_GRAPH, () => {
-    const msg = "Home GraphQL running...";
-    logger.info(msg);
-    console.log(msg);
+    cxt.logger.info("service.running", { port: HOME_INTERNAL_PORT_GRAPH });
   });
 })().catch(e => cxt.logger.error("service.error", { error: e.toString() }));
 
-Utils.Process.shutdown(signal => console.log("shutdown " + signal));
+Utils.Process.shutdown(signal =>
+  cxt.logger.info("service.shutdown", { signal })
+);
