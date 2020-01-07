@@ -10,6 +10,8 @@ import * as GraphCommon from "@nebulario/microservice-graph-common";
 import * as Logger from "@nebulario/microservice-logger";
 
 const ENV_MODE = process.env["ENV_MODE"];
+const ENV_LOG_FOLDER = process.env["ENV_LOG_FOLDER"];
+
 const ACCOUNT_INTERNAL_URL_GRAPH = process.env["ACCOUNT_INTERNAL_URL_GRAPH"];
 const AUTH_CACHE_INTERNAL_HOST = process.env["AUTH_CACHE_INTERNAL_HOST"];
 const AUTH_CACHE_INTERNAL_PORT = process.env["AUTH_CACHE_INTERNAL_PORT"];
@@ -24,34 +26,46 @@ const RESOURCES_CACHE_INTERNAL_PORT =
 const RESOURCES_CACHE_SECRET_PASSWORD =
   process.env["RESOURCES_CACHE_SECRET_PASSWORD"];
 
-const logger = Logger.create({ path: "/var/log/app", env: ENV_MODE });
-
 const cxt = {
+  env: {
+    mode: ENV_MODE,
+    logs: {
+      folder: ENV_LOG_FOLDER
+    }
+  },
   services: {},
-  logger
+  logger: null
 };
 
+cxt.logger = Logger.create({ path: ENV_LOG_FOLDER, env: ENV_MODE }, cxt);
+
 (async () => {
-  cxt.services.cache = await GraphCommon.Cache.connect({
-    host: RESOURCES_CACHE_INTERNAL_HOST,
-    port: RESOURCES_CACHE_INTERNAL_PORT,
-    password: RESOURCES_CACHE_SECRET_PASSWORD
-  });
+  cxt.services.cache = await GraphCommon.Cache.connect(
+    {
+      host: RESOURCES_CACHE_INTERNAL_HOST,
+      port: RESOURCES_CACHE_INTERNAL_PORT,
+      password: RESOURCES_CACHE_SECRET_PASSWORD
+    },
+    cxt
+  );
 
   var app = express();
   Logger.Service.use(app, cxt);
 
-  AuthLib.init({
-    app,
-    cache: {
-      host: AUTH_CACHE_INTERNAL_HOST,
-      port: AUTH_CACHE_INTERNAL_PORT,
-      secret: AUTH_CACHE_SECRET_PASSWORD
+  AuthLib.init(
+    {
+      app,
+      cache: {
+        host: AUTH_CACHE_INTERNAL_HOST,
+        port: AUTH_CACHE_INTERNAL_PORT,
+        secret: AUTH_CACHE_SECRET_PASSWORD
+      },
+      accounts: {
+        url: ACCOUNT_INTERNAL_URL_GRAPH
+      }
     },
-    accounts: {
-      url: ACCOUNT_INTERNAL_URL_GRAPH
-    }
-  });
+    cxt
+  );
 
   const schema = makeExecutableSchema({
     typeDefs: rootSchema,
